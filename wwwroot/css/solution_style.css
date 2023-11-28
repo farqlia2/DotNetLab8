@@ -1,0 +1,36 @@
+﻿body {
+
+}
+
+.equation {
+    font-size: 14px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+}
+
+.two_solutions {
+    font-size: 14px;
+    color: #6330F3;
+    border: 1px solid #4304F2;
+    background-color: #FBF3FE;
+}
+
+.one_solution {
+    color: #FF9319;
+    border: 1px solid #FF8700;
+    background-color: #FFFCF3;
+}
+
+.no_solution {
+    font-size: 16px;
+    font-weight: 500;
+    color: #FF2419;
+    border: 1px solid #FF0D00;
+    background-color: #FFF4F3;
+}
+
+.infinite_solutions {
+    font-size: 16px;
+    color: #18F47E;
+    border: 1px solid #00F270;
+    background-color: #F2FEF8;
+}

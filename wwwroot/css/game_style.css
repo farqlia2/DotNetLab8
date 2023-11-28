@@ -1,0 +1,54 @@
+﻿body {
+}
+
+.correct {
+    border: 1px solid #A4FA97;
+}
+
+.incorrect {
+    border: 1px solid #FF3D19;
+}
+
+.too_low {
+    font-family: 'Nova Square', sans-serif;
+    color: #F418CA;
+    border: 1px groove #F300C5;
+}
+
+.too_low_text {
+    color: #F418CA;
+}
+
+.too_high {
+    font-family: 'Playfair Display', serif;
+    color: #629DF3;
+    border: 1px dashed #0363F0;
+}
+
+.too_high_text {
+    color: #629DF3;
+}
+
+.out_of_range {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: #FFB019;
+    border: 1px dashed #FFA700;
+}
+
+.out_of_range_text {
+    color: #FFB019;
+}
+
+.guess {
+    font-size: 18px;
+    color: #8BFB18;
+    font-weight: 600;
+}
+
+.guess_text {
+    color: #8BFB18;
+}
+
+.n_of_probes {
+
+}
