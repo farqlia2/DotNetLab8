@@ -27,7 +27,7 @@ namespace DotNetLab8.Controllers
             } else
             {
                 reset();
-                ViewBag.Message = $"{n} Is Invalid - Please provide integer value greater than 0";
+                ViewBag.Message = $"Please provide integer value greater than 0";
                 ViewBag.Style = "incorrect";
             }
             
@@ -51,7 +51,7 @@ namespace DotNetLab8.Controllers
         public IActionResult Guess(int userValue)
         {
             ViewBag.Guess = userValue;
-            ViewBag.Info = $"Guessing from range 0 to {upperRange} ({randValue})";
+            ViewBag.Info = $"Guessing from range 0 to {upperRange - 1} ({randValue})";
             if (userValue <= 0 || userValue >= upperRange){
                 ViewBag.Message = "Out Of Range!";
                 ViewBag.Style = "out_of_range";

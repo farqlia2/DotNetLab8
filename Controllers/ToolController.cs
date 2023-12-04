@@ -9,8 +9,6 @@ namespace DotNetLab8.Controllers
         TwoSolutions, OneSolution, NoSolution, InfiniteSolutions
     }
 
- 
-
     public class ToolController : Controller
     {
 
@@ -26,7 +24,7 @@ namespace DotNetLab8.Controllers
         {
             double[] solution = SolveQuadraticEq(a, b, c);
             Solution solType = GetSolutionType(solution);
-            ViewBag.Equation = $"{a} * x <sup>2</sup> + {b} * x + {c}";
+            ViewBag.Equation = $"{a} * x ^ 2 + {b} * x + {c}";
             ViewBag.Message = FormatSolutionMessage(solType, solution);
             ViewBag.Style = CssStyle.GetValueOrDefault(solType, "");
             return View();
