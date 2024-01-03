@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 
@@ -7,10 +8,8 @@ namespace DotNetLab8.Controllers
     public class GameController : Controller
     {
         private readonly ILogger<GameController> _logger;
-        private static readonly Random random = new Random();
-        private static int upperRange = 30;
-        private static int randValue = -1;
-        private static int nOfProbes = 0;
+        private static readonly Random random = new Random(42);
+        private static readonly int DEFAULT_UPPER_RANGE = 30;
 
         public GameController(ILogger<GameController> logger)
         {
@@ -36,20 +35,30 @@ namespace DotNetLab8.Controllers
 
         private void reset(int n = 30)
         {
-            upperRange = n;
-            nOfProbes = 0;
+            HttpContext.Session.SetInt32("upperRange", n);
+            HttpContext.Session.SetInt32("nOfProbes", 0);
+            HttpContext.Session.Remove("randValue");
+
         }
 
         public IActionResult Draw()
         {
-            randValue = random.Next(upperRange);
-            nOfProbes = 0;
-            _logger.LogDebug($"Draw {randValue}");
+            int upperRange = HttpContext.Session.GetInt32("upperRange").GetValueOrDefault(DEFAULT_UPPER_RANGE);
+            int randValue = random.Next(upperRange);
+            HttpContext.Session.SetInt32("randValue", randValue);
+            HttpContext.Session.SetInt32("nOfProbes", 0);
+
             return View();
         }
 
         public IActionResult Guess(int userValue)
         {
+
+            int upperRange = HttpContext.Session.GetInt32("upperRange").GetValueOrDefault(DEFAULT_UPPER_RANGE);
+            int randValue = HttpContext.Session.GetInt32("randValue").GetValueOrDefault(-1);
+            int nOfProbes = HttpContext.Session.GetInt32("nOfProbes").GetValueOrDefault(0);
+
+
             ViewBag.Guess = userValue;
             ViewBag.Info = $"Guessing from range 0 to {upperRange - 1} ({randValue})";
             if (userValue <= 0 || userValue >= upperRange){
@@ -74,6 +83,7 @@ namespace DotNetLab8.Controllers
                 ViewBag.TextStyle = "guess_text";
             }
             nOfProbes += 1;
+            HttpContext.Session.SetInt32("nOfProbes", nOfProbes);
             ViewBag.NProbes = nOfProbes;
             return View();
         }
